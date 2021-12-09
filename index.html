@@ -62,7 +62,11 @@
           <h1 class="section__title section__title-bigger">
             Эфективные решения для вашего бизнеса
           </h1>
-          <button class="button button__order button--blue" type="button">
+          <button
+            class="button button__order button--blue"
+            type="button"
+            data-modal-open
+          >
             Заказать услугу
           </button>
         </div>
@@ -132,6 +136,7 @@
                 src="images/workProgramer.jpg"
                 alt="програмист пишет код"
               />
+              <h3 class="doings__header">Десктопные приложения</h3>
             </li>
             <li class="doings__item">
               <img
@@ -139,6 +144,7 @@
                 src="images/workDesigner.jpg"
                 alt="ui дизайнер делает интерфейс для мобильного приложения"
               />
+              <h3 class="doings__header">Мобильные приложения</h3>
             </li>
             <li class="doings__item">
               <img
@@ -146,6 +152,7 @@
                 src="images/workArtist.jpg"
                 alt="веб-дизайнер выбирает цвет на графическом планшете"
               />
+              <h3 class="doings__header">Дизайнерские решения</h3>
             </li>
           </ul>
         </div>
@@ -525,5 +532,15 @@
         </div>
       </div>
     </footer>
+    <div class="backdrop is-hidden" data-modal>
+      <div class="modal">
+        <button class="modal__btn-close" data-modal-close>
+          <svg class="modal__icon-close" width="18px" height="18px">
+            <use href="images/icons.svg#icon-close"></use>
+          </svg>
+        </button>
+      </div>
+    </div>
+    <script src="./js/modal.js"></script>
   </body>
 </html>

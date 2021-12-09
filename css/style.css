@@ -1,21 +1,30 @@
 :root {
   --brand-color: #2196f3;
+  --brand-color-opacity: rgba(33, 150, 243, 0.9);
   --background-color-grey_dark: #2f303a;
   --background-color-grey_light: #f5f4fa;
   --text-color-black: #212121;
+  --icon-black-clor: #000;
   --text-color-grey: #757575;
+  --backdrop-background-color: rgba(0, 0, 0, 0.2);
   --color-white: #fff;
   --border-color: #eeeeee;
   --color-icon-grey: #afb1b8;
+  --background-blackout: rgba(47, 48, 58, 0.4);
+  --background-doings: rgba(47, 48, 58, 0.8);
   --color-social-media-background_grey: #44454e;
   /*--section-padding: 94px 13.4375%;*/
   --section-padding: 94px 0;
   --box-shadow-team: 0px 1px 3px rgba(0, 0, 0, 0.12),
     0px 1px 1px rgba(0, 0, 0, 0.14), 0px 2px 1px rgba(0, 0, 0, 0.2);
+  --modal-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 1px rgba(0, 0, 0, 0.14),
+    0 2px 1px rgba(0, 0, 0, 0.2);
   --border-projects-width: 1px;
   --border-projects_item: var(--border-projects-width) solid var(--border-color);
   --button-hover-shadow: 0px 3px 1px rgba(0, 0, 0, 0.1),
     0px 1px 2px rgba(0, 0, 0, 0.08), 0px 2px 2px rgba(0, 0, 0, 0.12);
+  --animation-function: cubic-bezier(0.4, 0, 0.2, 1);
+  --animation-duration: 250ms;
 }
 
 ul {
@@ -122,6 +131,8 @@ body {
   font-size: 14px;
   line-height: 16px;
   letter-spacing: 0.02em;
+
+  transition: color var(--animation-duration) var(--animation-function);
 }
 
 .nav__link:hover,
@@ -131,7 +142,22 @@ body {
 }
 
 .nav__link--current {
+  position: relative;
+  padding-bottom: 32px;
+
   color: var(--brand-color);
+}
+
+.nav__link--current::after {
+  display: block;
+  position: absolute;
+  bottom: 0;
+  content: "";
+  width: 100%;
+  height: 4px;
+
+  background: var(--brand-color);
+  border-radius: 2px;
 }
 
 .contacts {
@@ -154,6 +180,8 @@ body {
   font-size: 14px;
   line-height: 16px;
   letter-spacing: 0.02em;
+
+  transition: color var(--animation-duration) var(--animation-function);
 }
 
 .contacts__link:hover,
@@ -171,6 +199,7 @@ body {
 .contacts__icon {
   fill: var(--text-color-grey);
   margin-right: 10px;
+  transition: fill var(--animation-duration) var(--animation-function);
 }
 
 .contacts__icon--email {
@@ -189,8 +218,8 @@ body {
 
   text-align: center;
   background-image: linear-gradient(
-      rgba(47, 48, 58, 0.4),
-      rgba(47, 48, 58, 0.4)
+      var(--background-blackout),
+      var(--background-blackout)
     ),
     url("../images/bg1.jpg");
   background-repeat: no-repeat;
@@ -245,16 +274,19 @@ body {
   background: var(--background-color-grey_light);
   border-radius: 4px;
   border: none;
+  transition: color var(--animation-duration) var(--animation-function),
+    box-shadow var(--animation-duration) var(--animation-function),
+    background-color var(--animation-duration) var(--animation-function);
 }
 
 .button:hover,
 .button:focus,
-button:active {
+.button:active {
   color: var(--color-white);
 
   cursor: pointer;
   box-shadow: var(--button-hover-shadow);
-  background: var(--brand-color);
+  background-color: var(--brand-color);
 }
 
 .button--blue,
@@ -329,6 +361,7 @@ button:active {
 }
 
 .doings__item {
+  position: relative;
 }
 
 .doings__item:not(:last-child) {
@@ -338,6 +371,23 @@ button:active {
 .doings__img {
   display: block;
   max-width: 100%;
+}
+
+.doings__header {
+  width: 100%;
+  position: absolute;
+  bottom: 0;
+  padding: 27px 0;
+
+  font-weight: bold;
+  font-size: 14px;
+  line-height: 16px;
+  text-align: center;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  color: var(--color-white);
+
+  background-color: var(--background-doings);
 }
 
 .team {
@@ -399,6 +449,8 @@ button:active {
   height: 44px;
   border-radius: 50%;
   background-color: var(--color-social-media-background_grey);
+  transition: background-color var(--animation-duration)
+    var(--animation-function);
 }
 
 .team__social-medias-item {
@@ -408,7 +460,7 @@ button:active {
 .social-medias__item:hover,
 .social-medias__item:focus-within,
 .social-medias__item:active {
-  background: var(--brand-color);
+  background-color: var(--brand-color);
 }
 
 .team__social-medias-item:hover .team__social-icon,
@@ -431,6 +483,7 @@ button:active {
 
 .social-medias__icon {
   fill: var(--color-white);
+  transition: fill var(--animation-duration) var(--animation-function);
 }
 .team__social-icon {
   fill: var(--color-icon-grey);
@@ -442,9 +495,9 @@ button:active {
 }
 
 .regular-customers__item {
-
   border: 1px solid var(--color-icon-grey);
   border-radius: 4px;
+  transition: border-color var(--animation-duration) var(--animation-function);
 }
 
 .regular-customers__item + .regular-customers__item {
@@ -472,6 +525,7 @@ button:active {
 
 .regular-customers__icon {
   fill: var(--color-icon-grey);
+  transition: fill var(--animation-duration) var(--animation-function);
 }
 
 .footer {
@@ -511,6 +565,7 @@ button:active {
 .address__contact {
   text-decoration: none;
   color: var(--text-color-grey);
+  transition: color var(--animation-duration) var(--animation-function);
 }
 
 .address__contact:hover,
@@ -551,18 +606,45 @@ button:active {
 
 .project-list__link-wrap {
   display: block;
+  transition: box-shadow var(--animation-duration) var(--animation-function);
 }
 
 .project-list__link-wrap:hover,
 .project-list__link-wrap:focus,
-.project-list__link-wrap:active  {
+.project-list__link-wrap:active {
   box-shadow: 0 1px 1px rgba(0, 0, 0, 0.12), 0 4px 4px rgba(0, 0, 0, 0.06),
     1px 4px 6px rgba(0, 0, 0, 0.16);
+}
+.project-list__link-wrap:hover .project-list__hover-text,
+.project-list__link-wrap:focus .project-list__hover-text,
+.project-list__link-wrap:active .project-list__hover-text {
+  transform: translateY(0);
 }
 
 .project-list__item {
   margin: 15px;
   max-width: 370px;
+}
+
+.project-list__top-container {
+  position: relative;
+  overflow: hidden;
+}
+
+.project-list__hover-text {
+  position: absolute;
+  top: 0;
+  height: 100%;
+  padding: 63px 24px 0 24px;
+  transform: translateY(100%);
+
+  font-size: 18px;
+  line-height: 28px;
+  letter-spacing: 0.03em;
+  color: var(--color-white);
+
+  background-color: var(--brand-color-opacity);
+  transition: transform var(--animation-duration) var(--animation-function);
 }
 
 .project-list__bottom-container {
@@ -595,4 +677,64 @@ button:active {
   line-height: 30px;
   letter-spacing: 0.03em;
   color: var(--text-color-grey);
+}
+
+.backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+
+  width: 100%;
+  height: 100%;
+
+  background-color: var(--backdrop-background-color);
+  transition: opacity var(--animation-duration) var(--animation-function);
+}
+
+.modal {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  width: 528px;
+  height: 581px;
+
+  background-color: var(--color-white);
+  box-shadow: var(--modal-shadow);
+  border-radius: 4px;
+}
+
+.modal__btn-close {
+  position: absolute;
+  right: 8px;
+  top: 8px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 30px;
+  height: 30px;
+
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  background-color: var(--color-white);
+  border-radius: 50%;
+}
+
+.modal__btn-close:hover .modal__icon-close,
+.modal__btn-close:focus .modal__icon-close,
+.modal__btn-close:active .modal__icon-close {
+  fill: var(--brand-color);
+}
+
+.modal__icon-close {
+  fill: var(--icon-black-clor);
+
+  transition: fill var(--animation-duration) var(--animation-function);
+}
+
+.is-hidden {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
 }
